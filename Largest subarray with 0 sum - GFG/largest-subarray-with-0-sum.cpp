@@ -12,7 +12,6 @@ class Solution{
     public:
     int maxLen(vector<int>&arr, int n)
     {   
-        if(n==8741) return 6303; 
         int sum=0;
         int last_sum=0;
         int j=0;
@@ -20,7 +19,6 @@ class Solution{
         int prefix[n+1]={0};
          for(int i=1;i<=n;i++){
              prefix[i]=prefix[i-1]+arr[i-1];
-            //  cout<<prefix[i]<<" ";
              if(m[prefix[i]]==0){
                 m[prefix[i]]=i;
             }
@@ -28,9 +26,15 @@ class Solution{
         int ans=0;
         int count=0;
         for(int i=1;i<=n;i++){
+            if(prefix[i]==0){
+                ans=max(ans,i);
+            }
+            if(ans<(i-m[prefix[i]])){
+                j=i;
            ans=max(ans,(i-m[prefix[i]]));
+                
+            }
         }
-        //  ans=max(ans,count);
         if(prefix[n]==0)
         return n;
         return ans;
