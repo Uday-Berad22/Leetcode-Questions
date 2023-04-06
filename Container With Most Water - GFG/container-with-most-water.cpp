@@ -18,14 +18,8 @@ long long maxArea(long long A[], int len)
         ans=max(ans,(min(A[i],A[j])*1LL*(j-i)));
         if(A[i]<A[j]) 
         i++;
-        else if(A[i]>A[j]) 
+        else
         j--;
-        else 
-        {
-            i++;
-            j--;
-        }
-  
     }
           return ans;
 }
