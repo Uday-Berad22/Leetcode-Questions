@@ -10,21 +10,10 @@ using namespace std;
 class Solution {
 public:
     int solve(int a, int b, int c) {
-        // code here
         int m=max(a,max(b,c));
-        int ans=0;
-        if(m==a){
-            ans=b+c;
-        }
-        else if(m==b){
-            ans=a+c;
-        }
-        else{
-            ans=a+b;
-        }
+        int remain=a+b+c-m;
         m-=2;
-        // cout<<m<<endl;
-        if(m<=2*ans){
+        if(m<=2*remain){
             return a+b+c;
         }
         return -1;
