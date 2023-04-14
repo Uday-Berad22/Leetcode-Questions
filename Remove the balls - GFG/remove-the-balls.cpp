@@ -6,30 +6,20 @@ using namespace std;
 
 // } Driver Code Ends
 // User function Template for C++
-bool cmp(pair<int,int> a,pair<int,int> b){
-    if(a.first==b.first){
-        return a.second<=b.second;
-    }
-    return a.first<b.first;
-}
+
 class Solution {
   public:
     int finLength(int N, vector<int> color, vector<int> radius) {
         stack<pair<int,int> > s;
-        vector<pair<int,int>> c;
-        for(int i=0;i<N;i++){
-            c.push_back({color[i],radius[i]});
-        }
-        // sort(c.begin(),c.end(),cmp);
         for(int i=0;i<N;i++){
             if(s.empty()){
-                s.push(c[i]);
+                s.push({color[i],radius[i]});
             }
-            else if(s.top().first==c[i].first&&s.top().second==c[i].second){
+            else if(s.top().first==color[i]&&s.top().second==radius[i]){
                 s.pop();
             }
             else{
-                s.push(c[i]);
+                s.push({color[i],radius[i]});
             }
         }
         return s.size();
