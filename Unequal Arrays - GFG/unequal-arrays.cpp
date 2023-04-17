@@ -36,54 +36,26 @@ class Solution {
         long long  s2=accumulate(B.begin(),B.end(),0);
         if(s1!=s2) return -1;
         vector<int> c,d,h,g;
-        unordered_map<int,int> m;
-        for(int i=0;i<B.size();i++){
-            m[B[i]]++;
-        }
         long long ec=0,oc=0,ecb=0,ocb=0,ans=0;
-        for(int i=0;i<A.size();i++){
-            if(m[A[i]]==0){
-                if(A[i]%2==0){
+        for(int i=0;i<A.size();i++)
+               { 
+                   if(A[i]%2==0){
                     ec++;
                     c.push_back(A[i]);
                 }
                 else{
                     oc++;
                     d.push_back(A[i]);
+                }  
+                if(B[i]%2==0){
+                    ecb++;
+                    h.push_back(B[i]);
                 }
-                
-            }
-            else{
-                m[A[i]]--;
-            }
-        }
-        // for(int i=0;i<B.size();i++){
-        //     if(m[B[i]]!=0){
-        //         if(B[i]%2==0){
-        //             ecb++;
-        //             h.push_back(B[i]);
-        //         }
-        //         else{
-        //             ocb++;
-        //             g.push_back(B[i]);
-        //         }
-        //         m[B[i]]--;
-        //     }
-        // }
-        for(auto a: m){
-            if(a.first%2==0){
-              int  k=a.second;
-                ecb+=a.second;
-                while(k--)
-                h.push_back(a.first);
-            }
-            else{
-                ocb+=a.second;
-                int  k=a.second;
-                // ecb+=a.second;
-                while(k--)
-                g.push_back(a.first);
-            }
+                else{
+                    ocb++;
+                    g.push_back(B[i]);
+                }  
+
         }
         sort(g.begin(),g.end());
         sort(c.begin(),c.end());
