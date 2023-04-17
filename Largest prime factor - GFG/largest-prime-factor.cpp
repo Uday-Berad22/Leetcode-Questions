@@ -3,24 +3,18 @@
 using namespace std;
 
 // } Driver Code Ends
-
-const int Ni=1e5+10;
-vector<bool> is_prime(Ni,true);
 class Solution{
 public: 
     long long int largestPrimeFactor(int n){
-        long long hp=0;
-     for(int i=2;i<=n;i++){
-        if(is_prime[i]==true){
-            if(i==n)
-            return n;
-            for(int j=2*i;j<=n;j+=i){
-                is_prime[j]=false;
-                if(j==n)hp=i;
+        int m=2;
+        for(int i=2;i*i<=n;i++){
+            while(n%i==0){
+                m=max(m,i);
+                n/=i;
             }
         }
-    }
-        return hp;
+        m=max(m,n);
+        return m;
     }
 };
 
