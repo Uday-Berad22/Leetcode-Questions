@@ -116,7 +116,7 @@ class Solution{
         }
         if(count==t) return ;
         Node *t1=p->left,*t2=p->right,*t3=m[p];
-        // m[p]=NULL;
+        m[p]=NULL;
         // if(m[p->left]!=NULL){
         fun(t1,count+1,ans);
         // }
