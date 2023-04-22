@@ -11,18 +11,12 @@ using namespace std;
 class Solution{
 public:
     int minimumNumber(int n,vector<int> &arr){
-        // Code here
-        int m=INT_MAX;
-        int cnt=0;
+        int m=0;
+        // int cnt=0;
         for(int i=0;i<n;i++){
-            if(arr[i]%2!=0){
-                cnt++;
-            }
-            else{
-                m=min(m,arr[i]);
-            }
+            m=__gcd(m,arr[i]);
         }
-        if(cnt>0) return 1;
+        // if(cnt>0) return 1;
         return m;
     }
 };
