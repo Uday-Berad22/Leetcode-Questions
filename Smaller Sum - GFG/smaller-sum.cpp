@@ -11,35 +11,25 @@ public:
     vector<long long> smallerSum(int n,vector<int> &arr){
         // Code here
         
-        vector<long long > ans(n,0);
-        long long  prefix[n+1]={0};
-        vector<int> v=arr;
-        sort(arr.begin(),arr.end());
-        int count=0;
+
+        unordered_map<long long ,long  long > m;
+        vector<long long> ans;
+        for(int i=0;i<n;i++)
+        ans.push_back(arr[i]);
+        sort(ans.begin(),ans.end());
         for(int i=0;i<n;i++){
             if(i==0){
-                ans[i]=0;
-                prefix[i]=arr[i];
+                m[ans[i]]=0;
             }
             else{
-                if(arr[i]==arr[i-1]){
-                    count++;
+                if(m.find(ans[i])==m.end()){
+                    m[ans[i]]=ans[i-1];
                 }
-                else{
-                    count=0;
-                }
-                prefix[i]=prefix[i-1]+arr[i];
-                ans[i]=(prefix[i-1]-(arr[i]*count));
-                // cout<<"hello"<<endl;
+                 ans[i]=ans[i-1]+ans[i];
             }
         }
-        unordered_map<long long ,long  long > m;
-        for(int i=0;i<n;i++)
-        {
-            m[arr[i]]=ans[i];
-        }
         for(int i=0;i<n;i++){
-            ans[i]=m[v[i]];
+            ans[i]=m[arr[i]];
         }
         return ans;
     }
