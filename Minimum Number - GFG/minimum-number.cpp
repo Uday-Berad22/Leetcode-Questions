@@ -13,12 +13,16 @@ public:
     int minimumNumber(int n,vector<int> &arr){
         // Code here
         int m=INT_MAX;
-        if(arr.size()<1e4)
-        sort(arr.begin(),arr.end());
-        for(int i=0;i<n-1;i++){
-            if(arr[i+1]!=arr[i])
-            m=min(m,abs(arr[i+1]-arr[i]));
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]%2!=0){
+                cnt++;
+            }
+            else{
+                m=min(m,arr[i]);
+            }
         }
+        if(cnt>0) return 1;
         return m;
     }
 };
