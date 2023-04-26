@@ -12,22 +12,11 @@ class Solution{
     
     string longestCommonPrefix (string s[], int n)
     {
-        string temp="";
-        int j=0;
-        int m=-1;
-        for(int i=0;i<n;i++){
-            int x=s[i].size();
-            if(x>m){
-                m=x;
-                temp=s[i];
-                j=i;
-
-            }
-        }
-        string ans=temp;
-        // cout<<ans<<endl;
-        for(int i=0;i<n;i++){
-            if(i==j) continue;
+        
+        string ans=s[0];
+        string  temp=s[0];
+        for(int i=1;i<n;i++){
+            // if(i==j) continue;
             int k=0;
             string a="";
             while(k<s[i].size()&&s[i][k]==temp[k]){
