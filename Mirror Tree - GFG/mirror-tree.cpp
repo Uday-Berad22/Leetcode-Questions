@@ -109,17 +109,13 @@ struct Node
 
 class Solution {
   public:
-    // Function to convert a binary tree into its mirror tree.
-    void post(Node* root){
+    void mirror(Node* root) {
         if(root==NULL) return;
-        post(root->left);
-        post(root->right);
+        mirror(root->left);
+        mirror(root->right);
         Node *temp=root->left;
         root->left=root->right;
         root->right=temp;
-    }
-    void mirror(Node* node) {
-        post(node);
     }
 };
 
