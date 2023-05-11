@@ -8,13 +8,7 @@ class Solution {
   public:
     int arrayOperations(int n, vector<int> &arr) {
         int c=0;
-        int co=0;
-        int a[]={10, 4 ,9 ,6, 10, 10, 4, 4};
-        for(int i=0;i<8;i++){
-            if(a[i]==arr[i])
-            co++;
-        }
-        if(arr.size()==8&&co==8) return 1;
+
         for(int i=0;i<n;i++){
             if(arr[i]==0) c++;
         }
