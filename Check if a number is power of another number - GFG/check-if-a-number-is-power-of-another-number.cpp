@@ -10,8 +10,12 @@ public:
         if(n==1) return 1;
         if(X==1&&n!=1) return 0;
         if(X==1&&n==1) return 1;
-        if(n%X!=0) return 0;
-        return isPowerOfAnother(X,n/X);
+        long long pow=1;
+        while(pow<n){
+            pow*=X;
+        }
+        if(pow==n) return 1;
+        return 0;
     }
 };
 
