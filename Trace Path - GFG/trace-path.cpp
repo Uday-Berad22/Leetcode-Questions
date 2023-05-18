@@ -80,21 +80,6 @@ public:
         Dm=max(count,Dm);
         int x2=max(Dm,Um);
         // cout<<x1<<" "<<x2<<endl;
-        if(x2>=n) return 0;
-        if(x1>=m) return 0;
-        if(l>r){
-            mi=mi-1;
-        }
-        else if(l<r) {
-            m=m-1;
-        }
-        if(u>d){
-           
-            n-=1;
-        }
-        else if(d<u){
-             ni-=1;
-        }
         unordered_set<int> s1,s2;
         for(int i=0;i<s.size();i++){
             if(x<=(-1*m)||x>=mi){
