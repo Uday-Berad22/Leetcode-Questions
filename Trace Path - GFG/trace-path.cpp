@@ -22,64 +22,7 @@ public:
             else if(s[i]=='D') d++;
             else u++;
         }
-        int count=0,Lm=0;
-        for(int i=0;i<s.size();i++){
-            if(s[i]=='L'){
-                count++;
-            }
-            else if(s[i]=='R')
-            {
-                Lm=max(count,Lm);
-                count=0;
-                
-            }
-        }
-         Lm=max(count,Lm);
-        count=0;
-        int Rm=0;
-         for(int i=0;i<s.size();i++){
-            if(s[i]=='R'){
-                count++;
-            }
-            else if(s[i]=='L')
-            {
-                Rm=max(count,Rm);
-                count=0;
-                
-            }
-        }
-         Rm=max(count,Rm);
-        int x1=max(Rm,Lm);
-        int Um=0,Dm=0;
-        count=0;
-        for(int i=0;i<s.size();i++){
-            if(s[i]=='U'){
-                count++;
-            }
-            else if(s[i]=='D')
-            {
-                Um=max(count,Um);
-                count=0;
-                
-            }
-            
-        }
-         Um=max(count,Um);
-        count=0;
-        for(int i=0;i<s.size();i++){
-            if(s[i]=='D'){
-                count++;
-            }
-            else if(s[i]=='U')
-            {
-                Dm=max(count,Dm);
-                count=0;
-                
-            }
-        }
-        Dm=max(count,Dm);
-        int x2=max(Dm,Um);
-        // cout<<x1<<" "<<x2<<endl;
+       
         unordered_set<int> s1,s2;
         for(int i=0;i<s.size();i++){
             if(x<=(-1*m)||x>=mi){
