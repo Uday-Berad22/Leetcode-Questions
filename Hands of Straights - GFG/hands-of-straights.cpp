@@ -6,62 +6,25 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    bool isStraightHand(int N, int groupSize, vector<int> &hand) {
-    //  
- 
-          map<int,int> mp;
-        for(auto i:hand){
-            mp[i]++;
+bool isStraightHand(int n, int k, vector<int> &a) {
+        if(n%k!=0)return false;
+        map<int,int>m;
+        for(int i:a){
+            m[i]+=1;
         }
-        
-       
-       
-       int e = -1;
-       int g = groupSize;
-       
-       while(mp.size() !=0){
-           
-           
-           
-           if(g == 0){
-               g = groupSize;
-               e = mp.begin()->first;
-           }
-           
-           if(e == -1){
-               e = mp.begin()->first;
-           }
-           
-           
-           
-           
-           if(mp.find(e)!=mp.end() and g!=0){
-               
-               mp[e]--;
-               if(mp[e] == 0)mp.erase(e);
-               e = e+1;
-               g--;
-               
-           }
-           else if(g!=0 and mp.find(e) == mp.end()){
-               return false;
-           }
-           
-           
-           
-           
-           
-           
-       }
-       
-       
-       if(g!=0)return false;
-        
-     if(mp.size() == 0)return true;
-     return false;
-
-
-    
+        while(!m.empty()){
+            int s = m.begin()->first;
+            int l = k;
+            while(l--){
+                if(!m[s])return false;
+                else{
+                    m[s]--;
+                    if(m[s]==0)m.erase(s);
+                }
+                s++;
+            }
+        }
+        return true;
     }
 };
 
