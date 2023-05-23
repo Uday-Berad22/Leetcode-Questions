@@ -45,14 +45,14 @@ class Solution{
             find_index=i;
         }
         
-        root->left=myfunction(pre,preMirror,size,index,find_index,end);
-        root->right=myfunction(pre,preMirror,size,index,start+1,find_index-1);
+        root->right=myfunction(pre,preMirror,size,index,find_index,end);
+        root->left=myfunction(pre,preMirror,size,index,start+1,find_index-1);
         return root;
     }
     Node* constructBinaryTree(int pre[], int preMirror[], int size)
     {
         int index=0;
-        return myfunction(pre,preMirror,size,index,0,size-1);
+        return myfunction(preMirror,pre,size,index,0,size-1);
     }
 };
 
