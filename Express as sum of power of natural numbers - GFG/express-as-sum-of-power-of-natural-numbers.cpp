@@ -24,9 +24,7 @@ class Solution{
                 low=mid;
             }
         }
-        // cout<<high<<endl;
         int m=high;
-        // // /
         int sum=n;
         long long num;
          vector<vector<int>> dp(m+1,vector<int> (sum+1,0));
@@ -46,12 +44,6 @@ class Solution{
                 }
             }
         }
-        //  for(int i=0;i<n+1;i++){
-        //     for(int j=0;j<sum+1;j++){
-        //         cout<<dp[i][j]<<" ";
-        //     }
-        //     cout<<endl;
-        // }
         return dp[m][sum];
     }
 };
