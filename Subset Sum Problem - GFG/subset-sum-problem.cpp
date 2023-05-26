@@ -11,11 +11,11 @@ class Solution{
 public:
     bool isSubsetSum(vector<int>a, int sum){
         int n=a.size();
-        vector<vector<bool>> dp(n+1,vector<bool> (sum+1,false));
+        vector<vector<int>> dp(n+1,vector<int> (sum+1,0));
         for(int i=0;i<n+1;i++){
         for(int j=0;j<sum+1;j++){
             if(j==0){
-                dp[i][j]=true;
+                dp[i][j]=1;
                 continue;
             }
             if(i==0){
@@ -27,11 +27,9 @@ public:
             }
             else if(dp[i-1][j]==true){
                 dp[i][j]=true;
-                // cout<<i<<" m "<<j<<endl;
             }
-            else if(j-a[i-1]>=0&& dp[i-1][j-a[i-1]]==true){
+            else if( dp[i-1][j-a[i-1]]==true){
                 dp[i][j]=true;
-            
             }
         }
     }
