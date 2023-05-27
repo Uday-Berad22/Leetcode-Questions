@@ -49,24 +49,52 @@ class Solution{
     {
         // for(int i=0;)\
         // whil
-        Node *p=head;
-        vector<int> a,b;
-        while(p!=NULL){
-            a.push_back(p->data);
-            b.push_back(p->data);
+        Node *p=head,*q=head->next;
+        while(q&&q->next){
             p=p->next;
+            q=q->next;
+            if(q)
+            q=q->next;
         }
-        int n=a.size();
-        for(int i=0;i<a.size()/2;i++){
-            a[i]=b[n-1-i]-a[i];
-            a[n-i-1]=b[i];
+        q=p;
+        p=p->next;
+        // cout<<p->data<<endl;
+        Node * cur=p,*nex=p,*prev=NULL;
+        while(nex!=NULL){
+            cur=nex;
+            nex=nex->next;
+            cur->next=prev;
+            prev=cur;
+            if(nex==NULL){
+                q->next=cur;
+            }
         }
-        int i=0;
+        // cur=p;
         p=head;
-         while(p!=NULL){
-            p->data=a[i];
+        // while (p!=NULL){
+        //     cout<<p->data<<" ";
+        //     p=p->next;
+        // }
+        p=head;
+        Node *temp=cur;
+        while(cur!=NULL){
+            int x=cur->data;
+            cur->data=p->data;
+            p->data=x-p->data;
+            cur=cur->next;
             p=p->next;
-            i++;
+        }
+        cur=temp;
+        prev=NULL;
+        nex=temp;
+        while(nex!=NULL){
+            cur=nex;
+            nex=nex->next;
+            cur->next=prev;
+            prev=cur;
+            if(nex==NULL){
+                q->next=cur;
+            }
         }
         return head;
     }
