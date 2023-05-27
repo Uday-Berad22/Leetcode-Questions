@@ -47,8 +47,6 @@ class Solution{
     public:
     struct Node* modifyTheList(struct Node *head)
     {
-        // for(int i=0;)\
-        // whil
         Node *p=head,*q=head->next;
         while(q&&q->next){
             p=p->next;
@@ -58,7 +56,6 @@ class Solution{
         }
         q=p;
         p=p->next;
-        // cout<<p->data<<endl;
         Node * cur=p,*nex=p,*prev=NULL;
         while(nex!=NULL){
             cur=nex;
@@ -69,12 +66,7 @@ class Solution{
                 q->next=cur;
             }
         }
-        // cur=p;
         p=head;
-        // while (p!=NULL){
-        //     cout<<p->data<<" ";
-        //     p=p->next;
-        // }
         p=head;
         Node *temp=cur;
         while(cur!=NULL){
