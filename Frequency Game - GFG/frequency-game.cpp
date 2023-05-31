@@ -15,10 +15,18 @@ public:
         unordered_map<int,int> m;
         for(int i=0;i<n;i++)
         m[arr[i]]++;
+        int f=INT_MAX,ma_x;
         for(auto a: m){
-            pq.push({-1*a.second,a.first});
+            if(f>a.second){
+                ma_x=a.first;
+                f=a.second;
+            }
+            else if(f==a.second){
+                ma_x=max(ma_x,a.first);
+                f=a.second;
+            }
         }
-        return pq.top().second;
+        return ma_x;
     }
 };
 
