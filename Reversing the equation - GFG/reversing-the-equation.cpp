@@ -10,19 +10,24 @@ class Solution
         {
             //code here.
             string num,ans;
+            stack<char> stk;
             for(int i=s.size()-1;i>=0;i--){
                 if(s[i]=='+'||s[i]=='-'||s[i]=='/'||s[i]=='*'){
-                    reverse(num.begin(),num.end());
-                    ans+=num;
+                    while(!stk.empty()){
+                        ans.push_back(stk.top());
+                        stk.pop();
+                    }
                     ans.push_back(s[i]);
-                    num="";
                 }
                 else{
-                    num.push_back(s[i]);
+                    stk.push(s[i]);
                 }
             }
-            reverse(num.begin(),num.end());
-            ans+=num;
+             while(!stk.empty()){
+                        ans.push_back(stk.top());
+                        stk.pop();
+                    }
+            
             return ans;
         }
 };
