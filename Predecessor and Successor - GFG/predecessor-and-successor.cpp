@@ -51,8 +51,17 @@ class Solution
             mxn=root;
             mx=(root->key)-key;
         }
+         if((root->key)==key){
             bst(root->right,key,mn,mx,mnn,mxn);
+             bst(root->left,key,mn,mx,mnn,mxn);
+        }
+            if((root->key)<key){
+            bst(root->right,key,mn,mx,mnn,mxn);
+        }
+        else if((root->key)>key){
             bst(root->left,key,mn,mx,mnn,mxn);
+        }
+        
     }
     void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
     {
