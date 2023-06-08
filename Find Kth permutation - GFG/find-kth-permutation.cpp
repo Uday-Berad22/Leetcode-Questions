@@ -11,19 +11,19 @@ using namespace std;
 class Solution
 {
 public:
-    void giveMePermutation(vector<string> &ans,string &s,int level,int &flag,int &k){
+    void giveMePermutation(string &s,int level,int &flag,int &k,int &count){
         if(flag==1) return ;
         if(level==s.size()){
-            ans.push_back(s);
-            if(ans.size()==k){
-                flag=1;
+            count++;
+            if(count==k){
+               flag=1;
             }
             return ;
         }
         for(int i=level;i<s.size();i++){
             swap(s[level],s[i]);
+            giveMePermutation(s,level+1,flag,k,count);
             if(flag==1) return ;
-            giveMePermutation(ans,s,level+1,flag,k);
         }
         if(flag==1) return ;
         for(int i=level;i<s.size()-1;i++){
@@ -36,10 +36,10 @@ public:
         for(int i=1;i<=n;i++){
             s.push_back(char(i+'0'));
         }
+        int count=0;
         int flag=0;
-        vector<string> ans;
-        giveMePermutation(ans,s,0,flag,k);
-        return ans[k-1];
+        giveMePermutation(s,0,flag,k,count);
+        return s;
     }
 };
 
