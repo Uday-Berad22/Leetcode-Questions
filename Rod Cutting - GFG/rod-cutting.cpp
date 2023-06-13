@@ -39,27 +39,28 @@ class Solution{
     int cutRod(int price[], int n) {
         //code here
         // vector<vector<int>> dp(n+1,vector<int> (n+1,0));
-        // for(int i=1;i<=n;i++){
-        //     for(int j=1;j<=n;j++){
-        //         if(i>j){
-        //             dp[i][j]=dp[i-1][j];
-        //             continue;
-        //         }
-        //         else{
-        //             dp[i][j]=max(price[i-1]+dp[i][j-i],dp[i-1][j]);
-        //         }
-        //     }
-        // }
-        // return dp[n][n];
-        vector<vector<int>> dp(n+1,vector<int> (n+1,-1));
-       int ans=help_function(1,n,price,dp);
+        vector<int> dp(n+1,0);
+        int temp=0;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=n;j++){
+                if(i>j){
+                    continue;
+                }
+                else{
+                    dp[j]=max(price[i-1]+dp[j-i],dp[j]);
+                }
+            }
+        }
+        return dp[n];
+    //     vector<vector<int>> dp(n+1,vector<int> (n+1,-1));
+    //   int ans=help_function(1,n,price,dp);
         // for(int i=1;i<=n;i++){
         //     for(int j=1;j<=n;j++){
         //         cout<<dp[i][j]<<" ";
         //     }
         //     cout<<endl;
         // }
-        return ans;
+        // return ans;
         
     }
 };
