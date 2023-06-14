@@ -14,8 +14,21 @@ class Solution
     public:
     long long divide(long long dividend, long long divisor) 
     {
-        //code here
-        return dividend/divisor;
+       
+        int sign=1;
+        if(divisor<0&&dividend>0||divisor>0&&dividend<0){
+            sign=-1;
+        }
+          dividend=abs(dividend);
+          divisor=abs(divisor);
+    //   while(dividend>=divisor){
+    //       ans++;
+    //       dividend-=divisor;
+    //   }
+    //   return ans*sign;
+    
+     long long ans= (exp(log(dividend)-log(divisor)))+0.00001;
+     return sign*ans;
     }
 };
 
