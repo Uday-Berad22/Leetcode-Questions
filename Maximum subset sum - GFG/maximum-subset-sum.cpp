@@ -33,14 +33,16 @@ class Solution {
   public:
     long long findMaxSubsetSum(int N, vector<int> &a) {
         // code here
-       vector<vector<int>> dp(N+1,vector<int> (2,0));
+    //   vector<vector<int>> dp(N+1,vector<int> (2,0));
+        long long x=0,y=0;
        int arrayindex=0;
        for(int i=1;i<=N;i++){
-           dp[i][0]=dp[i-1][1];
-           dp[i][1]=max(dp[i-1][0]+a[arrayindex],dp[i-1][1]+a[arrayindex]);
+           long long temp=x;
+           x=y;
+           y=max(temp+a[arrayindex],y+a[arrayindex]);
            arrayindex++;
        }
-       return max(dp[N][0],dp[N][1]);
+       return max(x,y);
     }
 };
 
