@@ -9,12 +9,12 @@ public:
     vector<int> singleNumber(vector<int> nums) 
     {
         // // Code here.
-        // int ans=0;
+        int ans=0;
         // int x;
         // int n=nums.size();
-        // for(int i=0;i<nums.size();i++){
-        //     ans=ans^nums[i];
-        // }
+        for(int i=0;i<nums.size();i++){
+            ans=ans^nums[i];
+        }
         // for(int i=0;i<n;i++){
         //     if(abs(__builtin_popcount(ans)-__builtin_popcount(nums[i]))==1){
         //         x=nums[i];
@@ -25,16 +25,15 @@ public:
         // for(int i=0;i<n;i++){
         //     y=y^nums[i];
         // }
-        vector<int> a;
-        // 
-        // return a;
-        unordered_map<int,int> m;
+        int diff=ans;
+         diff &= -diff;
+        vector<int> a(2,0);
         for(int i=0;i<nums.size();i++){
-            m[nums[i]]++;
-        }
-        for(auto x: m){
-            if(x.second==1){
-                a.push_back(x.first);
+            if(diff&nums[i]){
+                a[1]=a[1]^nums[i];
+            }
+            else{
+                a[0]=a[0]^nums[i];
             }
         }
         sort(a.begin(),a.end());
