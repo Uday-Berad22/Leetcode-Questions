@@ -22,38 +22,27 @@ int main()
 
 // } Driver Code Ends
 
-
-int CountPS(char s[], int n)
-{
-    //code here
-    vector<vector<bool>> dp(n,vector<bool> (n,false));
-    for(int i=0;i<n;i++){
-        int r=0,c=i;
-        while(r<n&&c<n){
-            if(i==0){
-                dp[r][c]=true;
-            }
-            else if(i==1){
-                if(s[r]==s[c]){
-                    dp[r][c]=true;
-                }
-            }
-            else{
-                if(s[r]==s[c]){
-                    dp[r][c]=dp[r+1][c-1];
-                }
-            }
-            r++;
-            c++;
+bool check(string s){
+    int n=s.size();
+    for(int i=0;i<n/2;i++){
+        if(s[i]!=s[n-1-i]){
+            return false;
         }
     }
+    return true;
+}
+int CountPS(char s[], int n)
+{
     int count=0;
+    string temp;
     for(int i=0;i<n;i++){
+        temp="";
+        temp.push_back(s[i]);
         for(int j=i+1;j<n;j++){
-            if(dp[i][j]){
+            temp.push_back(s[j]);
+            if(check(temp)){
                 count++;
             }
-           
         }
     }
     return count;
