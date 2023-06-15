@@ -40,6 +40,7 @@ class Solution{
         for(int j=i;j<n;j++){
             if(dp[i][j]){
                 string temp=s.substr(i,j+1-i);
+                if(m[temp]==0)
                 m[temp]++;
             }
            
