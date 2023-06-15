@@ -10,43 +10,23 @@ using namespace std;
 
 class Solution{
   public:
+    void find_palinderomic(int left,int right,string &s,unordered_set<string> &se_t){
+        while((left>=0&&right<s.size())&&s[left]==s[right]){
+            se_t.insert(s.substr(left,right-left+1));
+            left--;
+            right++;
+        }
+    }
     int palindromeSubStrs(string s) {
-        // code here
-        int n=s.size();
-         vector<vector<bool>> dp(n,vector<bool> (n,false));
-    for(int i=0;i<n;i++){
-        int r=0,c=i;
-        while(r<n&&c<n){
-            if(i==0){
-                dp[r][c]=true;
-            }
-            else if(i==1){
-                if(s[r]==s[c]){
-                    dp[r][c]=true;
-                }
-            }
-            else{
-                if(s[r]==s[c]){
-                    dp[r][c]=dp[r+1][c-1];
-                }
-            }
-            r++;
-            c++;
-        }
-    }
-    unordered_map<string,int> m;
-    int count=0;
-    for(int i=0;i<n;i++){
-        for(int j=i;j<n;j++){
-            if(dp[i][j]){
-                string temp=s.substr(i,j+1-i);
-                if(m[temp]==0)
-                m[temp]++;
-            }
-           
-        }
-    }
-    return m.size();
+       unordered_set<string> se_t;
+       for(int i=0;i<s.size();i++){
+           //odd
+           find_palinderomic(i,i,s,se_t);
+    
+           //even
+           find_palinderomic(i,i+1,s,se_t);
+       }
+       return se_t.size();
     }
 };
 
