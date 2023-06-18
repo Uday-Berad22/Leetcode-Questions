@@ -8,11 +8,6 @@ using namespace std;
 class Solution {
   public:
     int distributeTicket(int N, int k) {
-        // code here
-        vector<int> v;
-        for(int i=0;i<=N+1;i++){
-            v.push_back(i);
-        }
         int i,j;
         i=0;
         j=N+1;
