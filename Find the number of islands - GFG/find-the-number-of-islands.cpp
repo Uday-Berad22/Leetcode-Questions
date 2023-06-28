@@ -6,6 +6,7 @@ using namespace std;
 
 #define visted visited
 class Solution {
+    vector<vector<int>> direction={{1,1},{-1,-1},{1,0},{0,1},{0,-1},{-1,0},{-1,1},{1,-1}};
   public:
     // Function to find the number of islands.
     void dfs(vector<vector<char>> &grid,vector<vector<bool>> &visited,int i,int j){
@@ -13,15 +14,10 @@ class Solution {
         int m=grid[0].size();
         if(i>=n||i<0||j>=m||j<0) return;
         if(grid[i][j]=='1'&&visted[i][j]==false){
-            visted[i][j]=true;
-            dfs(grid,visted,i+1,j+1);
-            dfs(grid,visted,i-1,j-1);
-            dfs(grid,visted,i+1,j);
-            dfs(grid,visted,i,j+1);
-            dfs(grid,visted,i,j-1);
-            dfs(grid,visted,i-1,j);
-            dfs(grid,visted,i-1,j+1);
-            dfs(grid,visted,i+1,j-1);
+            visited[i][j]=true;
+            for(int k=0;k<8;k++){
+                dfs(grid,visited,i+direction[k][0],j+direction[k][1]);
+            }
         }
         visted[i][j]=true;
     }
