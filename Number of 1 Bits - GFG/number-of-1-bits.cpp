@@ -8,12 +8,7 @@ class Solution {
     int setBits(int N) {
         
         // Write Your Code here
-        int count=0;
-        for(int i=0;i<32;i++){
-            if((N>>i)&1)
-            count++;
-        }
-        return count;
+        return __builtin_popcount(N);
     }
 };
 
