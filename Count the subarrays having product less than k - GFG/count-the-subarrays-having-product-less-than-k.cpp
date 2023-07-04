@@ -19,21 +19,13 @@ class Solution{
                 pro=pro*1LL*a[i];
                 if(i>j)
                 ans+=((i-j));
-                // cout<<i<<" "<<j<<"\n";
-                // i++;
                 }
                 else{
                     pro=pro/a[j];
                     j++;
                 }
             }
-            // if(pro<k){
-            //     // pro=pro*1LL*a[i];
-            //     // i--;
-            //      if(i>j)
-            //     ans+=((i-j));
-            //     // i++;
-            //     }
+
             return ans;
     }
 };
