@@ -10,7 +10,7 @@ class Solution{
         void merge(long long arr1[], long long arr2[], int n, int m) 
         { 
             // code here 
-            if(n*1LL*m>1e7){
+            if(n*1LL*m>1e8){
                 vector<long long > v;
                 for(int i=0;i<n;i++){
                     v.push_back(arr1[i]);
