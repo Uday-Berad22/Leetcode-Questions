@@ -9,32 +9,19 @@ class Solution{
         //Function to merge the arrays.
         void merge(long long arr1[], long long arr2[], int n, int m) 
         { 
-            // code here 
-            if(n*1LL*m>1e8){
-                vector<long long > v;
-                for(int i=0;i<n;i++){
-                    v.push_back(arr1[i]);
-                }
-                for(int i=0;i<m;i++){
-                    v.push_back(arr2[i]);
-                }
-                sort(v.begin(),v.end());
-                for(int i=0;i<n;i++){
-                    arr1[i]=v[i];
-                }
-                for(int i=0;i<m;i++){
-                    arr2[i]=v[i+n];
-                }
-                return;
-            }
-            for(int i=0;i<m;i++){
-                for(int j=0;j<n;j++){
-                    if(arr1[j]>arr2[i]){
-                        swap(arr1[j],arr2[i]);
-                    }
-                }
-            }
-            sort(arr2,arr2+m);
+           int i=0,j=0,k=n-1;
+           while(i<n&&k>=0&&j<m){
+               if(arr1[k]>arr2[j]){
+                   swap(arr1[k],arr2[j]);
+                   k--;
+                   j++;
+               }
+               else{
+                   break;
+               }
+           }
+           sort(arr1,arr1+n);
+           sort(arr2,arr2+m);
         } 
 };
 
