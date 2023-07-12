@@ -9,15 +9,20 @@ class Solution{
     public:
     //You need to complete this fucntion
     long long binaryExpo(int N,int R){
-        long long ans=1;
-        while(R>0){
-            if(R&1){
-                ans=(ans*1LL*N)%M;
-            }
-            R=R>>1;
-            N=(N*1LL*N)%M;
+        if(R==1){
+            return N;
         }
-        return ans%M;
+        if(R==0){
+            return 1;
+        }
+        
+        long long ans=binaryExpo(N,R/2)%M;
+        if(R%2==0){
+            return (ans*ans)%M;
+        }
+        else{
+            return (((ans*ans)%M)*1LL*N)%M;
+        }
     }
     long long power(int N,int R)
     {
