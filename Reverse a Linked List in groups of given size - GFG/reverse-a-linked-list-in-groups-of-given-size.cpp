@@ -65,20 +65,7 @@ class Solution
     }
     struct node *reverse (struct node *head, int k)
     { 
-        // Complete this method
         if(k==1){
-            // node *cur=NULL,*prev=NULL;
-            //     node* nex=head;
-            //     // kk=k;
-            //         while(nex){
-            //       cur=nex;
-            //         if(nex)
-            //       nex=nex->next;
-            //          if(cur)
-            //         cur->next=prev;
-            //   prev=cur;
-            //     //  kk--;
-            //  }
              return head;
         }
         Node * s1=NULL,*s2=NULL,*e1=NULL,*e2=NULL;
@@ -104,7 +91,7 @@ class Solution
         
         node* q;
         if(p)q=p->next;
-        // reverse(s1,k);
+
         node *cur=NULL,*prev=NULL;
         node* nex=s1;
         int kk=k;
@@ -118,7 +105,6 @@ class Solution
             kk--;
         }
         p=q;
-        // cout<<p->data<<endl;
         for(int i=1;i<=n-k&&p;i++){
             if(i%k==1){
                 s2=p;
@@ -127,13 +113,8 @@ class Solution
             }
             else if(i%k==0){
                 e2=p;
-                
                 if(p)
                 q=p->next;
-                // cout<<s2->data<<endl;
-                // if(e2)
-                
-                // reverse_list(s2,k);
                  node *cur=NULL,*prev=NULL;
                 node* nex=s2;
                 kk=k;
@@ -146,12 +127,6 @@ class Solution
                      prev=cur;
                         kk--;
                     }
-                    // cout<<endl;
-                    // for(int j=0;j<k;j++){
-                    //     cout<<cur->data<<" ";
-                    //     cur=cur->next;
-                    // }
-                    // cout<<endl;
                 if(s1){
                 s1->next=cur;
                
@@ -159,21 +134,13 @@ class Solution
                 s1=s2;
                 e1=e2;
                 p=q;
-                // return f_ans;
             }
             else{
                 if(p)
             p=p->next;
             }
         }
-        // if(s2)
-        // cout<<s2->data<<endl;
-        // if(p){
-        //     cout<<p->data<<endl;
-        // }
-        // cout<<kk<<endl;
         if(n%k!=0){
-            // cout<<"Aloo"<<endl;
             e2=last;
         
              node *cur=NULL,*prev=NULL;
