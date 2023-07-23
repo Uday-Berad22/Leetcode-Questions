@@ -36,30 +36,69 @@ class Solution
     Node* segregate(Node *head) {
         
         // Add code here
-        int c0=0,c1=0,c2=0;
+        Node *head0=NULL,*head1=NULL,*head2=NULL,*ph0=NULL,*ph1=NULL,*ph2=NULL;
         Node *p=head;
         while(p!=NULL){
-            if(p->data==0) c0++;
-            else if (p->data==1) c1++;
-            else c2++;
-            p=p->next;
+            Node *temp=p->next;
+            if(p->data==0){
+                if(head0==NULL){
+                    head0=p;
+                    p->next=NULL;
+                    ph0=head0;
+                }
+                else{
+                    ph0->next=p;
+                    p->next=NULL;
+                    ph0=p;
+                }
+            }
+            else  if(p->data==1){
+                if(head1==NULL){
+                    head1=p;
+                    p->next=NULL;
+                    ph1=head1;
+                }
+                else{
+                    ph1->next=p;
+                    p->next=NULL;
+                    ph1=p;
+                }
+            }
+            else  if(p->data==2){
+                if(head2==NULL){
+                    head2=p;
+                    p->next=NULL;
+                    ph2=head2;
+                }
+                else{
+                    ph2->next=p;
+                    p->next=NULL;
+                    ph2=p;
+                }
+            }
+            p=temp;
         }
-        p=head;
-        while(p!=NULL){
-            if(c0!=0){
-                p->data=0;
-                c0--;
-            }
-            else if(c0==0&&c1!=0){
-                p->data=1;
-                c1--;
-            }
-            else {
-                p->data=2;
-                // c2--;
-            }
-            p=p->next;
+        if(head0)
+        head=head0;
+        else if(head1)
+        head=head1;
+        else if(head2)
+        head=head2;
+     
+        while(head0!=NULL&&head0->next!=NULL){
+            head0=head0->next;
         }
+        if(head0){
+            head0->next=head1;
+        }
+         while(head1!=NULL&&head1->next!=NULL){
+            head1=head1->next;
+        }
+        if(head1){
+            head1->next=head2;
+        }
+        else if(head0)
+        head0->next=head2;
         return head;
     }
 };
