@@ -40,28 +40,23 @@ struct Node
 class Solution
 {
     public:
-    //Function to return list containing elements of right view of binary tree.
+    //Function to return list containing elements of right view of binary tree
+    void rightViewHelper(vector<int> &ans,Node *root,int level,int &max_level)
+    {
+        if(root==NULL)
+        return;
+        if(max_level<level){
+            ans.push_back(root->data);
+        }
+        max_level=max(max_level,level);
+        rightViewHelper(ans,root->right,level+1,max_level);
+        rightViewHelper(ans,root->left,level+1,max_level);
+    }
     vector<int> rightView(Node *root)
     {
-       deque<Node*> dq;
        vector<int> ans;
-       ans.push_back(root->data);
-       dq.push_back(root);
-       while(!dq.empty()){
-           int n=dq.size();
-           for(int i=0;i<n;i++){
-               Node* p=dq.front();
-               dq.pop_front();
-               if(p->left){
-                   dq.push_back(p->left);
-               }
-               if(p->right){
-                   dq.push_back(p->right);
-               }
-           }
-           if(!dq.empty())
-           ans.push_back((dq.back())->data);
-       }
+       int max_level=-1;
+       rightViewHelper(ans,root,0,max_level);
        return ans;
     }
 };
