@@ -12,7 +12,18 @@ class Solution{
     // K: element to be searche
     int searchInSorted(int arr[], int N, int K) 
     {
-       return binary_search(arr,arr+N,K)==true?1:-1;
+       int low=-1;
+       int high=N;
+       while(high-low>1){
+           int mid=(high+low)/2;
+           if(arr[mid]<=K){
+               low=mid;
+           }
+           else{
+               high=mid;
+           }
+       }
+       return (low==-1||arr[low]!=K)?-1:1;
     }
 };
 
