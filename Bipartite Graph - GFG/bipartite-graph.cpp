@@ -5,20 +5,30 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
 public:
-    bool dfs(vector<int> G[],vector<bool> &visited,vector<int> &color_set,int node,int color){
-    visited[node]=true;
-    bool ans=true;
-    for(auto nbr: G[node]){
-        if(!visited[nbr]){
-                 color_set[nbr]=(!color);
-                 ans=ans&&dfs(G,visited,color_set,nbr,(!color));
-                 if(ans==false) return false;
+bool BFS(vector<int > G[],vector<bool> &visited,vector<int> &color_set){
+        queue<int> q;
+        int n=visited.size();  
+        for(int i=0;i<n;i++){
+           if(!visited[i]){
+                 q.push(i);
+                 color_set[i]=0;
+                 while(!q.empty()){
+                    int node=q.front();
+                    q.pop();
+                    for(auto nbr: G[node]){                                     
+                        if(color_set[nbr]==color_set[node]&&color_set[nbr]!=-1){
+                            return false;
+                        }
+                        if(!visited[nbr]){
+                            q.push(nbr);
+                            visited[nbr]=true;
+                            color_set[nbr]=color_set[node]^1;
+                        }
+                    }
+                }
+           }
         }
-        else if(color_set[nbr]==color_set[node]){
-            return false;
-        }
-    }
-    return ans;
+        return true;   
 }
 
 	bool isBipartite(int V, vector<int>G[]){
@@ -28,21 +38,8 @@ public:
     vector<int> color_set(n,-1);
     int source=0;
     int flag=0;
-     for(int i=0;i<n;i++){
-        if(!visited[i]){
-             color_set[i]=0;
-             if(dfs(G,visited,color_set,i,0)==false) {
-                flag=1;
-                break;
-             }
-        }
-    }
-    if(flag){
-        return false;
-    }
-        return true;
-	}
-
+    return BFS(G,visited,color_set); 
+}
 };
 
 //{ Driver Code Starts.
