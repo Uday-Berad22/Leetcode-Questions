@@ -22,6 +22,7 @@ class Solution
     }
 	int minStepToReachTarget(vector<int>&KnightPos,vector<int>&TargetPos,int N)
 	{
+	    if(KnightPos[0]==TargetPos[0]&&KnightPos[1]==TargetPos[1]) return 0;
 	    vector<vector<bool>> visited(N,vector<bool> (N,false));
 	    queue<pair<int,int>> q;
 	    q.push({KnightPos[0]-1,KnightPos[1]-1});
@@ -44,7 +45,7 @@ class Solution
           }
 	        }
 	    }
-        return 0;
+        return count;
 	}
 	//        if(KnightPos[0]<0||KnightPos[1]<0||KnightPos[0]>=N||KnightPos[1]>=N) return false;
 };
