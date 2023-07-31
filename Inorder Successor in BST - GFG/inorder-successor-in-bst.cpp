@@ -108,53 +108,22 @@ struct Node {
 */
 
 class Solution{
-    Node * anss;
   public:
-    // returns the inorder successor of the Node x in BST (rooted at 'root'
-    void BST_travelsal(Node *root,Node *x,bool &isfound,Node *ans,Node *prev,vector<Node*> &ansss){
-        if(root==NULL) return;
-        if(x==root){
-            isfound=true;
-            // BST_travelsal(root->right,x,isfound,ans, prev,ansss);
-            if(root->right){
-            root=root->right;
-            Node *temp=root;
-            while(root!=NULL){
-                temp=root;
-                root=root->left;
-            }
-            ansss.push_back(temp);
-            return;
-            }
-        }
-        prev=root;
-        if(root!=x&&ansss.size()==0&&isfound==true&&root->data>x->data){
-            ansss.push_back(root);
-            return ;
-        }
-        if(x->data>root->data){
-            BST_travelsal(root->right,x,isfound,ans,prev,ansss);
-        }
-        else{
-            BST_travelsal(root->left,x,isfound,ans, prev,ansss);
-        }
-        if(root!=x&&ansss.size()==0&&isfound==true&&root->data>x->data){
-            ansss.push_back(root);
-        }
-        return;
-    }
+    // returns the inorder successor of the Node x in BST (rooted at 'root')
     Node * inOrderSuccessor(Node *root, Node *x)
     {
-      Node *ans=NULL;
-    //   Node * * ans=&anss;
-      anss=NULL;
-      Node* prev=NULL;
-      bool isfound=false;
-      vector<Node*> ansss;
-      BST_travelsal(root,x,isfound,ans,prev,ansss);
-    //   cout<<(*(ans))<<endl;
-      if(ansss.size()==0) return NULL;
-      return ansss[0];
+        //Your code here
+        Node *succ=NULL;
+        while(root!=NULL){
+            if(root->data<=x->data){
+                root=root->right;
+            }
+            else{
+                succ=root;
+                root=root->left;
+            }
+        }
+        return succ;
     }
 };
 
