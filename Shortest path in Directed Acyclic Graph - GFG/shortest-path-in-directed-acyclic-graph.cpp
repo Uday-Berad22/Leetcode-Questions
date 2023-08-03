@@ -22,23 +22,15 @@ class Solution {
 
         }
         priority_queue<pair<int,int>> pq;
-        vector<bool> visited(N,false);
         pq.push({0,0});
-        visited[0]=true;
         while(!pq.empty()){
             int node=pq.top().second;
             int val=pq.top().first;
             ans[node]=min(-1*val,ans[node]);
             pq.pop();
-            // if(visited[node]==true){
-            //     continue;
-            // }
             for(auto nbr: G[node]){
-                // if(visited[nbr.first]==false){
                 if(-1*(val+(-1)*nbr.second)<ans[nbr.first])
                 pq.push({val+(-1)*nbr.second,nbr.first});
-                visited[nbr.first]=true;
-                // }
             }
         }
         for(int i=0;i<N;i++){
