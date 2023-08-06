@@ -15,15 +15,17 @@ class Solution{
         for(int i=level;i<s.size();i++){
             swap(s[i],s[level]);
             permutations_my(s,level+1);
+            swap(s[i],s[level]);
         }
-        for(int i=level;i<s.size()-1;i++){
-            swap(s[i],s[i+1]);
-        }
+        // for(int i=level;i<s.size()-1;i++){
+        //     swap(s[i],s[i+1]);
+        // }
     }
     vector<string> permutation(string s)
     {
         sort(s.begin(),s.end());
         permutations_my(s,0);
+        // for(int i=0;i<)
         sort(ans.begin(),ans.end());
         return ans;
     }
