@@ -8,12 +8,16 @@ using namespace std;
 class Solution
 {
     public:
+    int gcd_bhai(int a,int b){
+        if(b==0) return a;
+        return gcd_bhai(b,a%b);
+    }
     int countFractions(int n, int numerator[], int denominator[])
     {
         vector<pair<int,int> > v;
         map<pair<int,int> ,int> m;
         for(int i=0;i<n;i++){
-            int temp=__gcd(numerator[i], denominator[i]);
+            int temp=gcd_bhai(numerator[i], denominator[i]);
             int n1=numerator[i]/temp;
             int n2=denominator[i]/temp;
             v.push_back({n1,n2});
