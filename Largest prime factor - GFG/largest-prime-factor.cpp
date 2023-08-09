@@ -5,16 +5,18 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 public: 
-    long long int largestPrimeFactor(int n){
-        int m=2;
-        for(int i=2;i*i<=n;i++){
-            while(n%i==0){
-                m=max(m,i);
-                n/=i;
+    long long int largestPrimeFactor(int N){
+
+        long long  ans=N;
+        for(int i=2;i*i<=N;i++){
+            if(N>0&&N%i==0)
+            ans=i;
+            while(N>0&&N%i==0){
+                N=N/i;
             }
         }
-        m=max(m,n);
-        return m;
+      if(N>1) return N;
+       return ans;
     }
 };
 
