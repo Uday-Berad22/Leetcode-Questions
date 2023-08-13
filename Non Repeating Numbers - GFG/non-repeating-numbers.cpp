@@ -8,36 +8,32 @@ class Solution
 public:
     vector<int> singleNumber(vector<int> nums) 
     {
-        // // Code here.
-        int ans=0;
-        // int x;
-        // int n=nums.size();
-        for(int i=0;i<nums.size();i++){
-            ans=ans^nums[i];
+        // Code here.
+        int xor_of_two_nums_of_ans=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            xor_of_two_nums_of_ans=xor_of_two_nums_of_ans^nums[i];
         }
-        // for(int i=0;i<n;i++){
-        //     if(abs(__builtin_popcount(ans)-__builtin_popcount(nums[i]))==1){
-        //         x=nums[i];
-        //         break;
-        //     }
-        // }
-        // int y=x;
-        // for(int i=0;i<n;i++){
-        //     y=y^nums[i];
-        // }
-        int diff=ans;
-         diff &= -diff;
-        vector<int> a(2,0);
-        for(int i=0;i<nums.size();i++){
-            if(diff&nums[i]){
-                a[1]=a[1]^nums[i];
+        int set_bits=0;
+        int unset_bits=0;
+        int j=0;
+        for(int i=0;i<32;i++){
+            if(1&(xor_of_two_nums_of_ans>>i)){
+                j=i;
+                break;
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(1&(nums[i]>>j)){
+                set_bits=set_bits^nums[i];
             }
             else{
-                a[0]=a[0]^nums[i];
+                unset_bits=unset_bits^nums[i];
             }
         }
-        sort(a.begin(),a.end());
-        return a;
+        vector<int> v={set_bits,unset_bits};
+        sort(v.begin(),v.end());
+        return v;
     }
 };
 
