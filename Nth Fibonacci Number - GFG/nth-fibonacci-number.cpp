@@ -7,16 +7,18 @@ using namespace std;
 // User function Template for C++
 class Solution {
     const int M=1e9+7;
+    vector<int> dp;
   public:
+    int giveMefib(int n){
+        if(n==0) return 0;
+        if(n==1) return 1;
+        if(dp[n]!=-1) return dp[n];
+        return dp[n]=(giveMefib(n-1)+giveMefib(n-2))%M;
+    }
     int nthFibonacci(int n){
         // code here
-        vector<int> dp(n+1,0);
-        dp[0]=0;
-        dp[1]=1;
-        for(int i=2;i<=n;i++){
-            dp[i]=(dp[i-1]+dp[i-2])%M;
-        }
-        return dp[n];
+        dp.resize(n+1,-1);
+        return dp[n]=giveMefib(n);
     }
 };
 
