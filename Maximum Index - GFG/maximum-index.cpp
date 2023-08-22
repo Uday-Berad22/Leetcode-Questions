@@ -20,6 +20,7 @@ class Solution{
         }
         int ans=0;
         for(int i=0;i<N-1;i++){
+            if(ans>N-i) return ans;
             if(v[i+1]>=A[i]){
                 for(int j=N-1;j>=i;j--){
                     if(A[j]>=A[i]) { 
@@ -27,7 +28,7 @@ class Solution{
                     }
                 }
             }
-            if(ans>N-i) return ans;
+            
         }
         return ans;
     }
