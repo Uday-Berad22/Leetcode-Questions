@@ -65,20 +65,20 @@ struct Node {
   }
 };*/
 
-//Function to remove duplicates from sorted linked list
-struct Node * fun(struct Node * head,int last){
-    if(head==NULL) return NULL;
-    if(head->data==last) return  fun(head->next,last);
-    head->next=fun(head->next,head->data);
-    return head;
-}
-void removeDuplicatess(struct Node* head)
-{
-    head->next=fun(head->next,head->data);
-   
-}
+//Function to remove duplicates from sorted linked list.
 Node *removeDuplicates(Node *head)
 {
-    removeDuplicatess(head);
+    Node *p=head;
+    Node *q=head->next;
+    while(p!=NULL&&q!=NULL){
+        if(p->data==q->data){
+            p->next=q->next;
+            q=q->next;
+        }
+        else{
+            p=p->next;
+            q=q->next;
+        }
+    }
     return head;
 }
