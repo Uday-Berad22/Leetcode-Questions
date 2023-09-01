@@ -8,13 +8,12 @@ public:
 	int isNegativeWeightCycle(int n, vector<vector<int>>edges){
 	    // Code here
 	    vector<int> distance(n,0);
-	   // distance[1]=0;
 	    for(int i=0;i<n-1;i++){
 	        for(auto edge: edges){
 	            int u=edge[0];
 	            int v=edge[1];
 	            int wt=edge[2];
-	            if(distance[u]!=100000000&&distance[u]+wt<distance[v]){
+	            if(distance[u]+wt<distance[v]){
 	               distance[v]=distance[u]+wt;
 	            }
 	        }
@@ -23,7 +22,7 @@ public:
 	            int u=edge[0];
 	            int v=edge[1];
 	            int wt=edge[2];
-	            if(distance[u]!=100000000&&distance[u]+wt<distance[v]){
+	            if(distance[u]+wt<distance[v]){
 	               return 1;
 	            }
 	   }
