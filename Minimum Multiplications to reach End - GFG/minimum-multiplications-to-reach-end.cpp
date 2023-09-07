@@ -16,6 +16,8 @@ class Solution {
         int n=arr.size();
         int M=100000;
         int count=0;
+        start%=M;
+        end%=M;
         vector<int> visited(M+1,false);
         q.push(start);
         while(!q.empty()){
