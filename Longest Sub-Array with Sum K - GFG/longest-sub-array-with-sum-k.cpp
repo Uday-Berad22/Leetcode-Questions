@@ -11,18 +11,16 @@ class Solution{
         // Complete the function
         unordered_map<long long ,int> m;
         int n=N;
-        vector<long long > prefix(N+1,0);
-        for(int i=0;i<n;i++){
-            prefix[i+1]=prefix[i]+A[i];
-        }
+        long long prefix=0;
         m[0]=0;
         int ans=0;
         for(int i=1;i<=n;i++){
-            if(m.find(prefix[i]-k)!=m.end()){
-                ans=max(ans,i-m[prefix[i]-k]);
+            prefix+=A[i-1];
+            if(m.find(prefix-k)!=m.end()){
+                ans=max(ans,i-m[prefix-k]);
             }
-            if(m.find(prefix[i])==m.end())
-            m[prefix[i]]=i;
+            if(m.find(prefix)==m.end())
+            m[prefix]=i;
         }
         return ans;
     } 
