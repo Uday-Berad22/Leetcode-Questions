@@ -20,8 +20,23 @@ public:
     int equalPartition(int N, int arr[])
     {
         int sum=accumulate(arr,arr+N,0);
-        vector<vector<int>> dp(N+1,vector<int> (sum+1,-1));
-        return fun(0,0,0,N,arr,dp);
+        vector<vector<bool>> dp(N+1,vector<bool> (sum+1));
+        dp[0][0]=1;
+        for(int i=1;i<=N;i++){
+            for(int j=0;j<=sum;j++){
+                if(sum-j<j){
+                    break;
+                }
+                dp[i][j]=dp[i-1][j];
+                if(j==arr[i-1]||(j-arr[i-1]>=0&&dp[i-1][j-arr[i-1]]==true)){
+                    dp[i][j]=true;
+                    if(sum-j==j){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 };
 
