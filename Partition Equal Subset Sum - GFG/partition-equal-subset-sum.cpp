@@ -9,18 +9,10 @@ using namespace std;
 
 class Solution{
 public:
-    bool fun(int i,int Taken,int NotTaken,int N,int arr[],vector<vector<int>> &dp){
-        if(i==N) {
-            if(Taken ==NotTaken) return true;
-            return false;
-        }
-        if(dp[i][Taken]!=-1) return dp[i][Taken];
-        return dp[i][Taken]=fun(i+1,Taken,NotTaken+arr[i],N,arr,dp)||fun(i+1,Taken+arr[i],NotTaken,N,arr,dp);
-    }
     int equalPartition(int N, int arr[])
     {
         int sum=accumulate(arr,arr+N,0);
-        vector<vector<bool>> dp(N+1,vector<bool> (sum+1));
+        vector<vector<bool>> dp(N+1,vector<bool> (sum/2+1));
         dp[0][0]=1;
         for(int i=1;i<=N;i++){
             for(int j=0;j<=sum/2;j++){
