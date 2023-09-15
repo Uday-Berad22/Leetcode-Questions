@@ -23,7 +23,7 @@ public:
         vector<vector<bool>> dp(N+1,vector<bool> (sum+1));
         dp[0][0]=1;
         for(int i=1;i<=N;i++){
-            for(int j=0;j<=sum;j++){
+            for(int j=0;j<=sum/2;j++){
                 if(sum-j<j){
                     break;
                 }
