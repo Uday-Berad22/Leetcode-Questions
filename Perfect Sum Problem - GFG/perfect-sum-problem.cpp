@@ -11,10 +11,13 @@ class Solution{
         // Your code goes here
         vector<vector<long long>> dp(n+1,vector<long long> (sum+1,0));
         // sort(arr,arr+n);
-        dp[0][0]=1;
+        // dp[0][0]=1;
         for(int i=1;i<=n;i++){
             for(int j=0;j<=sum;j++){
                 dp[i][j]=dp[i-1][j];
+                if(arr[i-1]==j){
+                    (dp[i][j]+=1)%M;
+                }
                 if(j-arr[i-1]>=0){
                     dp[i][j]+=(dp[i-1][j-arr[i-1]])%M;
                 }
