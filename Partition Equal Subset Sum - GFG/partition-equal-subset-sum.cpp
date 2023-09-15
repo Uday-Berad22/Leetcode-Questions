@@ -24,9 +24,6 @@ public:
         dp[0][0]=1;
         for(int i=1;i<=N;i++){
             for(int j=0;j<=sum/2;j++){
-                if(sum-j<j){
-                    break;
-                }
                 dp[i][j]=dp[i-1][j];
                 if(j==arr[i-1]||(j-arr[i-1]>=0&&dp[i-1][j-arr[i-1]]==true)){
                     dp[i][j]=true;
