@@ -16,15 +16,19 @@ class Solution
     }
     long long countWays(int n)
     {
-        // if(n==1) return 1; if(n==2) return 2; if(n==3) return 4;
-        vector<long long > dp(n+1,-1);
-        // dp[1]=1;
-        // dp[2]=2;
-        // dp[3]=4;
-        // for(int i=4;i<=n;i++){
-        //     dp[i]=(dp[i-1]+dp[i-2]+dp[i-3])%M;
-        // }
-        return fun(n,dp);
+        if(n==1) return 1; if(n==2) return 2; if(n==3) return 4;
+        // vector<long long > dp(n+1,-1);
+        // return fun(n,dp);
+        long long  a=1;
+        long long  b=2;
+        long long  c=4;
+        for(int i=4;i<=n;i++){
+            long long b1=b,c1=c;
+            c=(a+b+c)%M;
+            a=b1;
+            b=c1;
+        }
+        return c;
     }
 };
 
