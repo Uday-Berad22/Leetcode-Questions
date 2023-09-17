@@ -11,12 +11,11 @@ using namespace std;
 class Solution{
     public:
     // Function to check if given number n is a power of two.
-    bool isPowerofTwo(long long N){
-        while(N>1){
-            if(N%2!=0) return false;
-            N/=2;
-        }
-        return N==1?true:false;
+    bool isPowerofTwo(long long n){
+         if(n <= 0)
+        return false;
+        else
+        return (n & (n - 1)) == 0;
     }
 };
 
