@@ -8,34 +8,33 @@ class Solution
   public:
         vector <int> rotate (int n, int d)
         {
-            //code here.
-            d=(d%16);
-            int a,b;
-            int D=d;
-            a=0;
-            b=(n>>d);
-             for(int i=16-D-1;i>=0;i--){
-                a=(a<<1);
-                if((n>>i)&1){
-                    a=a|1;
-                }
-
-            }
-            for(int i=15;i>=16-D;i--){
-                a=(a<<1);
-                if((n>>i)&1){
-                    a=a|1;
-                }
-            }
-            
-            for(int i=0;i<D;i++){
-                if((n>>i)&1){
-                    b=b|(1<<(16-D+i));
-                }
-            }
-            return {a,b};
-            // 10010
-            // 100100000
+           // rotation of 16 is same as rotation of 0
+        // rotation of 17 is same as rotation of 1
+        // and so on.
+        d = d % 16;
+        vector <int> res (2);
+        
+        // storing n in a temporary variable
+        int temp = n;
+        
+        int mask = (1 << d) - 1; // picking up the leftmost d bits
+        int shift = (temp & mask); 
+        temp = (temp >> d); // moving the remaining bits to their new location
+        temp += (shift << (16 - d)); // adding removed bits at rightmost end
+        res[1] = temp; // storing the new number
+    
+    
+        temp = n;
+        mask = ~((1 << (16 - d)) - 1); // picking the rightmost d bits
+        shift = (temp & mask);
+        temp = (temp << d); // moving the remaining bits to their new location
+        temp += (shift >> (16 - d)); // adding removed bits at leftmost end
+        res[0] = temp; // storing the new number
+    
+        mask = (1 << 16) - 1;
+		res[0] = (res[0] & mask);
+		
+        return res;
         }
 };
 
