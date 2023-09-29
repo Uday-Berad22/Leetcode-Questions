@@ -27,24 +27,13 @@ class Solution {
         int m=grid[0].size();
         vector<vector<bool>> visited(n,vector<bool> (m,false));
         for(int i=0;i<n;i++){
-                if(visited[i][0]==false){
-                    dfs(visited,i,0,grid);
+                if(i==0||i==n-1){
+                     for(int j=0;j<m;j++){
+                        dfs(visited,i,j,grid);
+                     }
                 }
-        }
-        for(int i=0;i<n;i++){
-                if(visited[i][m-1]==false){
-                     dfs(visited,i,m-1,grid);
-                }
-        }
-        for(int i=0;i<m;i++){
-                if(visited[0][i]==false){
-                     dfs(visited,0,i,grid);
-                }
-        }
-        for(int i=0;i<m;i++){
-            if(visited[n-1][i]==false){
-                 dfs(visited,n-1,i,grid);
-            }
+                dfs(visited,i,0,grid);
+                dfs(visited,i,m-1,grid);
         }
         int count=0;
         for(int i=0;i<n;i++){
