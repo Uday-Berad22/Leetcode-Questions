@@ -11,13 +11,12 @@ using namespace std;
 class Solution {
     vector<vector<int>> dirs={{1,0},{0,1},{-1,0},{0,-1}};
   public:
-    void dfs(vector<vector<bool>> &visited,int i,int j,vector<vector<int>> &grid){
+    void dfs(int i,int j,vector<vector<int>> &grid){
         if(i<0||i>=grid.size()||j>=grid[0].size()||j<0) return;
-        if(visited[i][j]==true) return;
-        visited[i][j]=true;
         if(grid[i][j]==1){
+            grid[i][j]=0;
             for(auto &dir: dirs){
-                 dfs(visited,i+dir[0],j+dir[1],grid);
+                 dfs(i+dir[0],j+dir[1],grid);
             }
         }
     }
@@ -25,20 +24,19 @@ class Solution {
         // Code here
         int n=grid.size();
         int m=grid[0].size();
-        vector<vector<bool>> visited(n,vector<bool> (m,false));
         for(int i=0;i<n;i++){
                 if(i==0||i==n-1){
                      for(int j=0;j<m;j++){
-                        dfs(visited,i,j,grid);
+                        dfs(i,j,grid);
                      }
                 }
-                dfs(visited,i,0,grid);
-                dfs(visited,i,m-1,grid);
+                dfs(i,0,grid);
+                dfs(i,m-1,grid);
         }
         int count=0;
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
-                if(visited[i][j]==false&&grid[i][j]==1){
+                if(grid[i][j]==1){
                     count++;
                 }
             }
