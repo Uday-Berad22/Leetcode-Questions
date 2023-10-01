@@ -8,28 +8,19 @@ class Solution{
 	public:
 	int minCoins(int coins[], int M, int V) 
 	{ 
-	    // Your code goes here
-	   //sort(coins,coins+M);
-	   vector<int> dp(V+1,0);
+	   vector<int> dp(V+1,INT_MAX);
+	   dp[0]=0;
 	   for(int i=1;i<=M;i++){
 	       for(int j=1;j<=V;j++){
+	           if(j-coins[i-1]<0)continue;
 	           if(j==coins[i-1]){
 	               dp[j]=1;
 	           }
-	           else if(j-coins[i-1]>=0){
-	               if(dp[j-coins[i-1]]!=0&&dp[j]==0){
-	                   dp[j]=dp[j-coins[i-1]]+1;
-	               }
-	               else if(dp[j-coins[i-1]]!=0&&dp[j]!=0){
-	                   dp[j]=min(dp[j-coins[i-1]]+1,dp[j]);
-	               }
-	           }
-	           else{
-	               dp[j]=dp[j];
-	           }
-	           }
+	           if(dp[j-coins[i-1]]!=INT_MAX)
+	           dp[j]=min(dp[j-coins[i-1]]+1,dp[j]);
+	       }
 	   }
-	   return dp[V]==0?-1:dp[V];
+	   return dp[V]==INT_MAX?-1:dp[V];
 	} 
 	  
 };
