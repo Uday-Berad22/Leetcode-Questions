@@ -9,7 +9,7 @@ class Solution{
 	int minCoins(int coins[], int M, int V) 
 	{ 
 	    // Your code goes here
-	   sort(coins,coins+M);
+	   //sort(coins,coins+M);
 	   vector<int> dp(V+1,0);
 	   for(int i=1;i<=M;i++){
 	       for(int j=1;j<=V;j++){
