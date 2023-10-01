@@ -10,36 +10,26 @@ class Solution{
 	{ 
 	    // Your code goes here
 	   sort(coins,coins+M);
-	   vector<vector<int>> dp(M+1,vector<int> (V+1,0));
+	   vector<int> dp(V+1,0);
 	   for(int i=1;i<=M;i++){
 	       for(int j=1;j<=V;j++){
-
 	           if(j==coins[i-1]){
-	               dp[i][j]=1;
+	               dp[j]=1;
 	           }
 	           else if(j-coins[i-1]>=0){
-	               if(dp[i-1][j]!=0&&dp[i][j-coins[i-1]]!=0){
-	               dp[i][j]=min(dp[i-1][j],dp[i][j-coins[i-1]]+1);
+	               if(dp[j-coins[i-1]]!=0&&dp[j]==0){
+	                   dp[j]=dp[j-coins[i-1]]+1;
 	               }
-	               else if(dp[i-1][j]!=0){
-                      dp[i][j]=dp[i-1][j];
-	               }
-	               else if(dp[i][j-coins[i-1]]!=0){
-	                   dp[i][j]=dp[i][j-coins[i-1]]+1;
+	               else if(dp[j-coins[i-1]]!=0&&dp[j]!=0){
+	                   dp[j]=min(dp[j-coins[i-1]]+1,dp[j]);
 	               }
 	           }
 	           else{
-	               dp[i][j]=dp[i-1][j];
+	               dp[j]=dp[j];
 	           }
 	           }
 	   }
-	   //for(int i=0;i<=M;i++){
-	   //    for(int j=0;j<=V;j++){
-	   //        cout<<dp[i][j]<<" ";
-	   //    }
-	   //    cout<<endl;
-	   //}
-	   return dp[M][V]==0?-1:dp[M][V];
+	   return dp[V]==0?-1:dp[V];
 	} 
 	  
 };
