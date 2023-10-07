@@ -33,10 +33,8 @@ class Solution {
   public:
     void recurssion(set<string> &ans,string &s,int i,int cO,int cC,string &temp,int &maxi){
         if(i==s.size()){
-            if(cO==cC){
+            if(cO==cC&&temp.size()==maxi){
                 ans.insert(temp);
-                int n=temp.size();
-                maxi=max(maxi,n);
             }
             return;
         }
@@ -60,10 +58,23 @@ class Solution {
         set<string> ans;
         string temp="";
         int maxi=0;
+        int siz;
+        int cnt1=0,cnt2=0,cnt3=0;
+        for(int i=0;i<s.size();i++){
+            if(s[i]==')'&&cnt2<cnt1){
+                cnt2++;
+            }
+            else if(s[i]=='(')
+            cnt1++;
+            else if(s[i]!=')')
+            cnt3++;
+        }
+        siz=min(cnt1,cnt2)*2+cnt3;
+        // cout<<siz<<endl;
         vector<string> f_ans;
-        recurssion(ans,s,0,0,0,temp,maxi);
+        recurssion(ans,s,0,0,0,temp,siz);
         for(auto &a: ans) {
-            if(a.size()==maxi) f_ans.push_back(a);
+            f_ans.push_back(a);
         }
         return f_ans;
     }
