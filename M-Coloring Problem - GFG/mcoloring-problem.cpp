@@ -47,26 +47,13 @@ public:
                }
             }
         }
-        // if(maxi!=cnt1){
-        //     return false;
-        // }
         colors[i]=0;
         return false;
     }
     bool graphColoring(bool graph[101][101], int m, int n) {
         vector<int> colors(n,0);
-        // for(int i=0;i<n;i++){
-        //     for(int j=0;j<n;j++){
-        //         cout<<graph[i][j]<<" ";
-        //     }
-        //     cout<<endl;
-        // }
         for(int i=0;i<n;i++){
-            dfs(i,graph,m,n,colors);
-        }
-        // sort(colors.begin(),colors.end());
-        for(int i=0;i<n;i++){
-            if(colors[i]==0)return false;
+            if(dfs(i,graph,m,n,colors)==false) return false;
         }
         return true;
     }
