@@ -7,46 +7,18 @@ using namespace std;
 #define setofCities setOfCities
 class Solution {
 public:
-int fun(int &ans,int n,int last,int i,int value,vector<vector<int>> &cost,vector<bool> &visited,int cnt,vector<vector<int>> &dp){
-    // if(m.find({visited,i})!=m.end()) return m[{visited,i}];
+int fun(int n,int last,int i,vector<vector<int>> &cost,vector<vector<int>> &dp){
+    if(last==(1<<n)-1) return cost[i][0];
     if(dp[last][i]!=-1) return dp[last][i];
     int a=INT_MAX;
     for(int j=0;j<n;j++){
-        if(i!=j&&visited[j]==false){
-            visited[j]=true;
+        if((last&(1<<j))==0){
             int temp=last;
-            temp=(last|(1<<i));
-            a=min(a,fun(ans,n,temp,j,value+cost[i][j],cost,visited,cnt+1,dp)+cost[i][j]);
-            visited[j]=false;
+            temp=(last|(1<<j));
+            a=min(a,fun(n,temp,j,cost,dp)+cost[i][j]);
         }
     }
-    if(cnt==n){
-        return cost[i][0];
-    }
     return dp[last][i]=a;
-}
-
-int tsp(vector<vector<int> > &dist, int setOfCities, int city, int n,vector<vector<int>> &dp) {
-
-//base case
-
-if(setofCities == (1<<n) -1){ //return the cost from the city to the original
-return dist[city][0];
-
-} if(dp[setofCities] [city] !=-1){return dp[setofCities] [city]; } 
-
-//otherwise try all possible options
-int ans = INT_MAX;
-
-for(int choice=0; choice<n; choice++){ //need to check if city is visited or not 
-if((setofCities & (1<<choice))==0){
-int subProb = dist [city] [choice] + tsp (dist, setOfCities |(1<<choice), choice,n,dp);
-ans = min(ans, subProb);
-}
-}
-dp [setofCities] [city] =ans;
-return ans; 
-
 }
 
 int total_cost(vector<vector<int>>cost){
@@ -55,7 +27,7 @@ int total_cost(vector<vector<int>>cost){
     int n=cost.size();
     int num=(1<<(n+1))-1;
     vector<vector<int>> dp(num+1,vector<int> (n,-1));
-    return  tsp (cost, 1, 0,n,dp);
+    return fun(n,1,0,cost,dp);
 }
 };
 
