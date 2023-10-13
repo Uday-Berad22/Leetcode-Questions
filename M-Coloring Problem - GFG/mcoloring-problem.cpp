@@ -10,11 +10,7 @@ public:
     // that no two adjacent vertices of graph are coloured with same colour.
     bool dfs(int i,bool graph[101][101],int m,int n,vector<int> &colors){
         if(colors[i]!=0) return true;
-        int f=0;
-        int maxi=INT_MIN;
-        int cnt1=0;
         for(int k=1;k<=m;k++){
-            // cout<<k<<" "<<i<<endl;
             int flag=0;
             for(int j=0;j<n;j++){
                 if(graph[i][j]==true){
@@ -24,19 +20,12 @@ public:
                     }
                 }
             }
-           
             if(flag==0){
                 int flag1=0;
-                int count=0;
-                int cnt=0;
                 colors[i]=k;
                 for(int j=0;j<n;j++){
                     if(graph[i][j]==true&&colors[j]==0){
-                        count++;
-                        if(dfs(j,graph,m,n,colors)){
-                            cnt++;
-                        }
-                        else{
+                        if(dfs(j,graph,m,n,colors)==false){
                             flag1=1;
                             break;
                         }
