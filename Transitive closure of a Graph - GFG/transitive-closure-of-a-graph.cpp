@@ -16,6 +16,11 @@ public:
         for(int j=0;j<n;j++){
             if(graph[i][j]==1&&visited[j]==false){
                 dfs(j,visited,graph);
+                for(int k=0;k<n;k++){
+                    if(graph[j][k]==1){
+                        graph[i][k]=1;
+                    }
+                }
             }
         }
         return;
@@ -30,15 +35,11 @@ public:
         for(int i=0;i<n;i++){
             vector<bool> visited(n,false);
             dfs(i,visited,graph);
-             for(int j=0;j<n;j++){
-                if(visited[j]==true){
-                    graph[i][j]=1;
-                }
-            }
         }
         return graph;
     }
 };
+
 
 //{ Driver Code Starts.
 
