@@ -9,18 +9,30 @@ using namespace std;
 
 class Solution{
 public:
+    void dfs(int i,vector<bool> &visited,vector<vector<int>> &graph){
+        int n=visited.size();
+        if(visited[i]==true) return;
+        visited[i]=true;
+        for(int j=0;j<n;j++){
+            if(graph[i][j]==1&&visited[j]==false){
+                dfs(j,visited,graph);
+            }
+        }
+        return;
+    }
     vector<vector<int>> transitiveClosure(int N, vector<vector<int>> graph)
     {
         // Floyyd Warshall 
         for(int i=0;i<N;i++){
             graph[i][i]=1;
         }
-        for(int via=0;via<N;via++){
-            for(int i=0;i<N;i++){
-                for(int j=0;j<N;j++){
-                    if(graph[i][via]==1&&graph[via][j]==1){
-                        graph[i][j]=1;
-                    }
+        int n=N;
+        for(int i=0;i<n;i++){
+            vector<bool> visited(n,false);
+            dfs(i,visited,graph);
+             for(int j=0;j<n;j++){
+                if(visited[j]==true){
+                    graph[i][j]=1;
                 }
             }
         }
