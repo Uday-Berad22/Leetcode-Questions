@@ -9,35 +9,37 @@ using namespace std;
 // User function Template for C++
 
 class Solution {
-    vector<vector<int>> dirs={{1,0},{0,1},{-1,0},{0,-1}};
+    vector<vector<int>> directions={{1,0},{0,1},{-1,0},{0,-1}};
   public:
-    void dfs(int i,int j,vector<vector<int>> &grid){
-        if(i<0||i>=grid.size()||j>=grid[0].size()||j<0) return;
-        if(grid[i][j]==1){
-            grid[i][j]=0;
-            for(auto &dir: dirs){
-                 dfs(i+dir[0],j+dir[1],grid);
-            }
-        }
+    void DFS(int x,int y,vector<vector<int>> &mat){
+        int n=mat.size();
+        int m=mat[0].size();
+        mat[x][y]=0;
+        for(auto &dir: directions)
+        {
+            int xx=x+dir[0];
+            int yy=y+dir[1];
+            if(xx<n&&yy<m&&xx>=0&&yy>=0&&mat[xx][yy]==1)
+                DFS(xx,yy,mat);
+        }       
     }
-    int numberOfEnclaves(vector<vector<int>> &grid) {
+    int numberOfEnclaves(vector<vector<int>> &mat) {
         // Code here
-        int n=grid.size();
-        int m=grid[0].size();
-        for(int i=0;i<n;i++){
-                if(i==0||i==n-1){
-                     for(int j=0;j<m;j++){
-                        dfs(i,j,grid);
-                     }
-                }
-                dfs(i,0,grid);
-                dfs(i,m-1,grid);
-        }
         int count=0;
+        int n=mat.size();
+        int m=mat[0].size();
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
-                if(grid[i][j]==1){
-                    count++;
+                if(i==0||i==n-1||j==0||j==m-1){
+                    if(mat[i][j]==1)
+                    DFS(i,j,mat);
+                }
+            }
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(mat[i][j]==1){
+                   count++;
                 }
             }
         }
