@@ -26,7 +26,7 @@ public:
         vector<pair<int,int>> v;
         dp.assign(W+1,-1);
         for(int i=0;i<N;i++) v.push_back({wt[i],val[i]});
-        sort(v.begin(),v.end());
+        // sort(v.begin(),v.end());
         return recurssion(v,0,W);
     }
 };
