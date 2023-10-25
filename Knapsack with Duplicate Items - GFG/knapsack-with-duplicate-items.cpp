@@ -8,26 +8,17 @@ using namespace std;
 // User function Template for C++
 
 class Solution{
-    vector<int> dp;
 public:
-    int recurssion(vector<pair<int,int>> &v,int sum,int W){
-        int N=v.size();
-        if(dp[sum]!=-1) return dp[sum];
-        int ans=0;
-        for(int j=0;j<N;j++){
-            if(sum+v[j].first<=W){
-               ans=max(recurssion(v,sum+v[j].first,W)+v[j].second,ans); 
-            }
-        }
-        return dp[sum]=ans;
-    }
     int knapSack(int N, int W, int val[], int wt[])
     {
-        vector<pair<int,int>> v;
-        dp.assign(W+1,-1);
-        for(int i=0;i<N;i++) v.push_back({wt[i],val[i]});
-        // sort(v.begin(),v.end());
-        return recurssion(v,0,W);
+        vector<int> dp(W+1,0);
+        for(int i=0;i<N;i++){
+            for(int j=0;j<=W;j++){
+                if(j-wt[i]>=0)
+                dp[j]=max(dp[j],dp[j-wt[i]]+val[i]);
+            }
+        }
+        return dp[W];
     }
 };
 
