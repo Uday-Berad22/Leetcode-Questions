@@ -10,13 +10,13 @@ using namespace std;
 class Solution{
     vector<int> dp;
 public:
-    int recurssion(vector<pair<int,int>> &v,int sum,int profit,int i,int W){
+    int recurssion(vector<pair<int,int>> &v,int sum,int W){
         int N=v.size();
         if(dp[sum]!=-1) return dp[sum];
         int ans=0;
         for(int j=0;j<N;j++){
             if(sum+v[j].first<=W){
-               ans=max(recurssion(v,sum+v[j].first,profit+v[j].second,j,W)+v[j].second,ans); 
+               ans=max(recurssion(v,sum+v[j].first,W)+v[j].second,ans); 
             }
         }
         return dp[sum]=ans;
@@ -27,7 +27,7 @@ public:
         dp.assign(W+1,-1);
         for(int i=0;i<N;i++) v.push_back({wt[i],val[i]});
         sort(v.begin(),v.end());
-        return recurssion(v,0,0,0,W);
+        return recurssion(v,0,W);
     }
 };
 
