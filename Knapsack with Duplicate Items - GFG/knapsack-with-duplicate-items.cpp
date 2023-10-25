@@ -12,14 +12,14 @@ class Solution{
 public:
     int recurssion(vector<pair<int,int>> &v,int sum,int profit,int i,int W){
         int N=v.size();
-        if(dp[W-sum]!=-1) return dp[W-sum];
+        if(dp[sum]!=-1) return dp[sum];
         int ans=0;
         for(int j=0;j<N;j++){
             if(sum+v[j].first<=W){
                ans=max(recurssion(v,sum+v[j].first,profit+v[j].second,j,W)+v[j].second,ans); 
             }
         }
-        return dp[W-sum]=ans;
+        return dp[sum]=ans;
     }
     int knapSack(int N, int W, int val[], int wt[])
     {
