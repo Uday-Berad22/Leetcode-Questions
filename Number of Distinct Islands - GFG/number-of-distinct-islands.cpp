@@ -10,17 +10,25 @@ using namespace std;
 class Solution {
   public:
     vector<vector<int>> directions={{0,1},{1,0},{0,-1},{-1,0}};
-    void DFS(vector<vector<int>> &grid,vector<vector<bool>> &visited,int x,int y,set<vector<pair<int,int>>> &s,int baseX,int baseY,vector<pair<int,int>> &temp){
+    void BFS(vector<vector<int>> &grid,vector<vector<bool>> &visited,int x,int y,set<vector<pair<int,int>>> &s,int baseX,int baseY,vector<pair<int,int>> &temp){
         int m=grid.size();
         int n=grid[0].size();
         visited[x][y]=true;
-        pair<int,int> p={x-baseX,y-baseY};
-        temp.push_back(p);
-        for(auto &dir: directions){
-            int xx=x+dir[0];
-            int yy=y+dir[1];
-            if(xx<m&&yy<n&&xx>=0&&yy>=0&&grid[xx][yy]==1&&visited[xx][yy]==false){
-                DFS(grid,visited,xx,yy,s,baseX,baseY,temp);
+        queue<pair<int,int>> q;
+        q.push({x,y});
+        while(!q.empty()){
+            x=q.front().first;
+            y=q.front().second;
+            q.pop();
+            pair<int,int> p={x-baseX,y-baseY};
+            temp.push_back(p);
+            for(auto &dir: directions){
+                int xx=x+dir[0];
+                int yy=y+dir[1];
+                if(xx<m&&yy<n&&xx>=0&&yy>=0&&grid[xx][yy]==1&&visited[xx][yy]==false){
+                    q.push({xx,yy});
+                    visited[xx][yy]=true;
+                }
             }
         }
     }
@@ -34,7 +42,7 @@ class Solution {
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 if(visited[i][j]==false&&grid[i][j]==1){
-                    DFS(grid,visited,i,j,s,i,j,temp);
+                    BFS(grid,visited,i,j,s,i,j,temp);
                     s.insert(temp);
                     temp.clear();
                 }
