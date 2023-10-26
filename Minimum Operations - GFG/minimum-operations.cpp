@@ -12,14 +12,7 @@ class Solution
         if(n==0){
             return 0;
         }
-        int count=1;
-        // int num=1;
-        while(n>1){
-            count++;
-            count=count+n%2;
-            n=n/2;
-        }
-        return count;
+        return (int)log2(n) + __builtin_popcount(n);
     }
 };
 
