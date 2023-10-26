@@ -8,10 +8,7 @@ class Solution
   public:
     int minOperation(int n)
     {
-        //code here.
-        if(n==0){
-            return 0;
-        }
+        if(n==0) return 0;
         return (int)log2(n) + __builtin_popcount(n);
     }
 };
